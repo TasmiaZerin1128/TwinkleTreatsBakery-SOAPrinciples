@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.wstutorial.com/ws/RetailerService"
+           xmlns:tns="http://www.wstutorial.com/ws/RetailerService">
+
+    <xs:complexType name="Retailer">
+        <xs:all>
+            <xs:element name="id" type="xs:long" />
+            <xs:element name="name" type="xs:string" />
+            <xs:element name="email" type="xs:string" />
+            <xs:element name="phoneNumber" type="xs:string" />
+            <xs:element name="nidNumber" type="xs:string" />
+            <xs:element name="tinNumber" type="xs:string" />
+            <xs:element name="bank" type="xs:string" />
+        </xs:all>
+    </xs:complexType>
+
+    <xs:element name="updateRetailerRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="retailerType" type="tns:Retailer" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="createRetailerRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="retailerType" type="tns:Retailer" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:element name="deleteRetailerRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getRetailerRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getRetailersRequest">
+        <xs:complexType>
+            <xs:sequence>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getRetailerResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="tns:Retailer" name="retailer"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getRetailersResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="tns:Retailer" minOccurs="0" maxOccurs="unbounded" name="retailers" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="Retailers">
+        <xs:sequence>
+            <xs:element type="tns:Retailer" minOccurs="0" maxOccurs="unbounded" name="retailers" />
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="RetailerService"
+			 targetNamespace="http://www.wstutorial.com/ws/RetailerService"
+			 xmlns="http://schemas.xmlsoap.org/wsdl/"
+			 xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+			 xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			 xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+			 xmlns:tns="http://www.wstutorial.com/ws/RetailerService"
+			 xmlns:retailer="http://www.wstutorial.com/ws/RetailerService"
+			 xmlns:common="http://www.wstutorial.com/ws/CommonService">
+
+	<types>
+		<xs:schema>
+			<xs:import namespace="http://www.wstutorial.com/ws/RetailerService" schemaLocation="../schemas/retailer.xsd"/>
+		</xs:schema>
+		<xs:schema>
+			<xs:import namespace="http://www.wstutorial.com/ws/CommonService" schemaLocation="../../../../../Common/src/main/resources/schemas/common.xsd"/>
+		</xs:schema>
+	</types>
+
+	<message name="getRetailersRequestMsg">
+		<part name="params" element="retailer:getRetailersRequest" />
+	</message>
+	<message name="getRetailersResponseMsg">
+		<part name="params" element="retailer:getRetailersResponse" />
+	</message>
+
+	<message name="deleteRetailerRequestMsg">
+		<part name="params" element="retailer:deleteRetailerRequest" />
+	</message>
+	<message name="sendAcknowledgementMsg">
+		<part name="params" element="common:AcknowledgementCodeResponse" />
+	</message>
+
+	<message name="updateRetailerRequestMsg">
+		<part name="params" element="retailer:updateRetailerRequest" />
+	</message>
+
+	<message name="createRetailerRequestMsg">
+		<part name="params" element="retailer:createRetailerRequest"/>
+	</message>
+
+	<message name="retailerFailureMsg">
+		<part name="params" element="common:fault" />
+	</message>
+
+	<message name="getRetailerRequestMsg">
+		<part name="params" element="retailer:getRetailerRequest"/>
+	</message>
+	<message name="getRetailerResponseMsg">
+		<part name="params" element="retailer:getRetailerResponse"/>
+	</message>
+
+	<portType name="RetailerServicePortType">
+		<operation name="deleteRetailer">
+			<input message="tns:deleteRetailerRequestMsg" />
+			<output message="tns:sendAcknowledgementMsg" />
+			<fault name="fault" message="tns:retailerFailureMsg" />
+		</operation>
+		<operation name="createRetailer">
+			<input message="tns:createRetailerRequestMsg"/>
+			<output message="tns:sendAcknowledgementMsg"/>
+			<fault name="fault" message="tns:retailerFailureMsg"/>
+		</operation>
+		<operation name="updateRetailer">
+			<input message="tns:updateRetailerRequestMsg" />
+			<output message="tns:sendAcknowledgementMsg" />
+			<fault name="fault" message="tns:retailerFailureMsg" />
+		</operation>
+		<operation name="getRetailers">
+			<input message="tns:getRetailersRequestMsg" />
+			<output message="tns:getRetailersResponseMsg" />
+			<fault name="fault" message="tns:retailerFailureMsg" />
+		</operation>
+		<operation name="getRetailer">
+			<input message="tns:getRetailerRequestMsg"/>
+			<output message="retailer:getRetailerResponseMsg"/>
+			<fault name="fault" message="tns:retailerFailureMsg"/>
+		</operation>
+	</portType>
+
+	<binding name="retailerServiceSOAPBinding" type="tns:RetailerServicePortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="deleteRetailer">
+			<soap:operation soapAction="deleteRetailer" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="createRetailer">
+			<soap:operation soapAction="createRetailer" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="updateRetailer">
+			<soap:operation soapAction="updateRetailer" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="getRetailers">
+			<soap:operation soapAction="getRetailers" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="getRetailer">
+			<soap:operation soapAction="getRetailer" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+	</binding>
+	<service name="RetailerService">
+		<port name="RetailerServicePort" binding="tns:retailerServiceSOAPBinding">
+			<soap:address location="http://localhost:8083/ws/retailerService" />
+		</port>
+	</service>
+</definitions>
