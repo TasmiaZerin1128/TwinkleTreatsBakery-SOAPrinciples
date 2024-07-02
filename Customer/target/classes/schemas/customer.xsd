@@ -9,9 +9,6 @@
             <xs:element name="name" type="xs:string" />
             <xs:element name="email" type="xs:string" />
             <xs:element name="phoneNumber" type="xs:string" />
-            <xs:element name="nidNumber" type="xs:string" />
-            <xs:element name="tinNumber" type="xs:string" />
-            <xs:element name="bank" type="xs:string" />
         </xs:all>
     </xs:complexType>
 
@@ -71,10 +68,51 @@
         </xs:complexType>
     </xs:element>
 
+    <xs:element name="placeOrderRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="tns:Order" name="order"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="trackOrderRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="tns:Order" name="order"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="updateOrderRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="tns:Order" name="order"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
     <xs:complexType name="Customers">
         <xs:sequence>
             <xs:element type="tns:Customer" minOccurs="0" maxOccurs="unbounded" name="customers" />
         </xs:sequence>
     </xs:complexType>
 
+    <xs:complexType name="Order">
+        <xs:all>
+            <xs:element name="id" type="xs:long" />
+            <xs:element name="customerId" type="xs:long" />
+            <xs:element name="amount" type="xs:long" />
+            <xs:element name="status" type="xs:string" />
+            <xs:element name="items" type="tns:Item"/>
+        </xs:all>
+    </xs:complexType>
+    <xs:complexType name="Item">
+        <xs:all>
+            <xs:element name="id" type="xs:long" />
+            <xs:element name="name" type="xs:string" />
+            <xs:element name="quantity" type="xs:long" />
+            <xs:element name="price" type="xs:long" />
+        </xs:all>
+    </xs:complexType>
 </xs:schema>

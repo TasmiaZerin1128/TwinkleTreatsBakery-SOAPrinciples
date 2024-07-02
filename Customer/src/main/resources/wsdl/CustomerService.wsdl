@@ -15,6 +15,8 @@
 		</xs:schema>
 		<xs:schema>
 			<xs:import namespace="http://www.wstutorial.com/ws/CommonService" schemaLocation="../../../../../Common/src/main/resources/schemas/common.xsd"/>
+			<xs:import namespace="http://www.wstutorial.com/ws/OrderService" schemaLocation="../../../../../Order/src/main/resources/schemas/order.xsd"/>
+			<xs:import namespace="http://www.wstutorial.com/ws/ItemService" schemaLocation="../../../../../Item/src/main/resources/schemas/item.xsd"/>
 		</xs:schema>
 	</types>
 
@@ -51,6 +53,16 @@
 		<part name="params" element="customer:getCustomerResponse"/>
 	</message>
 
+	<message name="placeOrderRequestMsg">
+		<part name="params" element="order:placeOrderRequest"/>
+	</message>
+	<message name="trackOrderRequestMsg">
+		<part name="params" element="order:trackOrderRequest"/>
+	</message>
+	<message name="updateOrderRequestMsg">
+		<part name="params" element="order:updateOrderRequest"/>
+	</message>
+
 	<portType name="CustomerServicePortType">
 		<operation name="deleteCustomer">
 			<input message="tns:deleteCustomerRequestMsg" />
@@ -76,6 +88,21 @@
 			<input message="tns:getCustomerRequestMsg"/>
 			<output message="customer:getCustomerResponseMsg"/>
 			<fault name="fault" message="tns:customerFailureMsg"/>
+		</operation>
+		<operation name="placeOrder">
+			<input message="tns:placeOrderRequestMsg" />
+			<output message="tns:sendAcknowledgementMsg" />
+			<fault name="fault" message="tns:customerFailureMsg" />
+		</operation>
+		<operation name="trackOrder">
+			<input message="tns:trackOrderRequestMsg" />
+			<output message="tns:sendAcknowledgementMsg" />
+			<fault name="fault" message="tns:customerFailureMsg" />
+		</operation>
+		<operation name="updateOrder">
+			<input message="tns:updateOrderRequestMsg" />
+			<output message="tns:sendAcknowledgementMsg" />
+			<fault name="fault" message="tns:customerFailureMsg" />
 		</operation>
 	</portType>
 
@@ -131,6 +158,42 @@
 		</operation>
 		<operation name="getCustomer">
 			<soap:operation soapAction="getCustomer" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="placeOrder">
+			<soap:operation soapAction="placeOrder" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="trackOrder">
+			<soap:operation soapAction="trackOrder" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="updateOrder">
+			<soap:operation soapAction="updateOrder" />
 			<input>
 				<soap:body use="literal" />
 			</input>

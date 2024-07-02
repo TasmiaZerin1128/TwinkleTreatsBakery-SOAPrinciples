@@ -11,25 +11,20 @@ public class CustomerRepository {
     List<Customer> customers = new ArrayList<>();
 
     public CustomerRepository() {
-        Customer sel1 = new Customer();
-        sel1.setId(1001);
-        sel1.setName("Tasmia Zerin");
-        sel1.setEmail("bsse1128@iit.du.ac.bd");
-        sel1.setPhoneNumber("01752773475");
-        sel1.setBank("1041050090156");
-        sel1.setTinNumber("1230024859");
+        Customer customer1 = new Customer();
+        customer1.setId(1001);
+        customer1.setName("Tasmia Zerin");
+        customer1.setEmail("bsse1128@iit.du.ac.bd");
+        customer1.setPhoneNumber("01752773475");
 
+        Customer customer2 = new Customer();
+        customer2.setId(1002);
+        customer2.setName("New Customer in Town");
+        customer2.setEmail("customer@iit.du.ac.bd");
+        customer2.setPhoneNumber("01618985426");
 
-        Customer sel2 = new Customer();
-        sel2.setId(1002);
-        sel2.setName("New Customer in Town");
-        sel2.setEmail("customer@iit.du.ac.bd");
-        sel2.setPhoneNumber("01618985426");
-        sel2.setBank("1041053798267");
-        sel2.setTinNumber("1234024850");
-
-        customers.add(sel1);
-        customers.add(sel2);
+        customers.add(customer1);
+        customers.add(customer2);
     }
     public List<Customer> getAllCustomers() {
         return customers;
@@ -74,6 +69,32 @@ public class CustomerRepository {
         return AcknowledgementCode.FAILED;
     }
 
+    public Order placeOrder(Item item, Long id) {
+        for(Customer r: customers) {
+            if(r.getId() == id) {
+                Order newOrder = new Order();
+                newOrder.setItems(item);
+                newOrder.setId(id + 5001);
+                newOrder.setAmount(1);
+                newOrder.setStatus("Confirmed");
+                return newOrder;
+            }
+        }
+        System.out.println("Customer not found with id: " + id);
+        return null;
+    }
+
+    public Order trackOrder(Item item, Long id) {
+        for(Customer r: customers) {
+            if(r.getId() == id) {
+                Order tracked = new Order();
+                tracked.setId(id);
+                return tracked;
+            }
+        }
+        System.out.println("Customer not found with id: " + id);
+        return null;
+    }
 
     public void createNewCustomer(Customer customer) {
         customer.setId(customers.size()+1001);

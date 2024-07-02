@@ -79,7 +79,18 @@ public class CustomerServiceEndpoint {
 		return response;
 	}
 
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "placeOrderRequest" )
+	@ResponsePayload
+	public Order placeOrder(@RequestPayload PlaceOrderRequest request)throws Exception  {
 
+        return customerRepository.placeOrder(request.getOrder().getItems(), request.getOrder().getCustomerId());
+	}
 
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "trackOrderRequest" )
+	@ResponsePayload
+	public Order placeOrder(@RequestPayload TrackOrderRequest request)throws Exception  {
+
+		return customerRepository.trackOrder(request.getOrder().getItems(), request.getOrder().getCustomerId());
+	}
 
 }
