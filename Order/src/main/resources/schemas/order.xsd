@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.wstutorial.com/ws/OrderService"
+           xmlns:tns="http://www.wstutorial.com/ws/OrderService"
+           xmlns:item="http://www.wstutorial.com/ws/itemservice">
+
+    <xs:import namespace="http://www.wstutorial.com/ws/itemservice" schemaLocation="../../../../../Item/src/main/resources/schemas/item.xsd"/>
+
+    <xs:complexType name="Order">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="customerOrRetailerId" type="xs:long"/>
+            <xs:element name="datetime" type="xs:long"/>
+            <xs:element name="amount" type="xs:long"/>
+            <xs:element name="items" minOccurs="1" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="item" type="tns:item" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="type" type="tns:OrderType"/>
+            <xs:element name="status" type="tns:OrderStatus"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="OrderStatus">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="PENDING"/>
+            <xs:enumeration value="CONFIRMED"/>
+            <xs:enumeration value="CANCELLED"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="OrderType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="CUSTOMER"/>
+            <xs:enumeration value="RETAILER"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="item">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="itemName" type="xs:string"/>
+            <xs:element name="quantity" type="xs:long"/>
+            <xs:element name="price" type="xs:long"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="updateOrderRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="orderType" type="tns:Order" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="createOrderRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="orderType" type="tns:Order" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:element name="cancelOrderRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getOrderRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getOrdersRequest">
+        <xs:complexType>
+            <xs:sequence>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getOrdersResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="tns:Order" minOccurs="0" maxOccurs="unbounded" name="orders" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getOrderResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="tns:Order" name="order"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="updateOrderStatusRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="xs:long" name="id"/>
+                <xs:element type="tns:OrderStatus" name="status"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getOrdersByCustomerIdRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="xs:long" name="customerId"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getOrdersByRetailerIdRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="xs:long" name="retailerId"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="Orders">
+        <xs:sequence>
+            <xs:element type="tns:Order" minOccurs="0" maxOccurs="unbounded" name="orders" />
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

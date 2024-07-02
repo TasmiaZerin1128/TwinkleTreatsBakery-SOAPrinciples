@@ -1,0 +1,16 @@
+com/wstutorial/ws/itemservice/GetItemsResponse.class
+com/wstutorial/ws/commonservice/ObjectFactory.class
+com/wstutorial/ws/itemservice/Items.class
+com/wstutorial/ws/itemservice/ObjectFactory.class
+com/wstutorial/ws/commonservice/package-info.class
+com/wstutorial/ws/itemservice/package-info.class
+com/wstutorial/ws/itemservice/Item.class
+com/wstutorial/ws/commonservice/AcknowledgementCode.class
+com/wstutorial/ws/itemservice/GetItemsRequest.class
+com/wstutorial/ws/itemservice/GetItemRequest.class
+com/wstutorial/ws/itemservice/CreateItemRequest.class
+com/wstutorial/ws/itemservice/GetItemResponse.class
+com/wstutorial/ws/commonservice/AcknowledgementCodeResponse.class
+com/wstutorial/ws/commonservice/StatusCode.class
+com/wstutorial/ws/itemservice/DeleteItemRequest.class
+com/wstutorial/ws/itemservice/UpdateItemRequest.class

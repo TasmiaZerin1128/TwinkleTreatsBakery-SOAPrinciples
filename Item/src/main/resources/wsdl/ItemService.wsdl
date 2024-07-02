@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="ItemService"
+			 targetNamespace="http://www.wstutorial.com/ws/ItemService"
+			 xmlns="http://schemas.xmlsoap.org/wsdl/"
+			 xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+			 xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			 xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+			 xmlns:tns="http://www.wstutorial.com/ws/ItemService"
+			 xmlns:Item="http://www.wstutorial.com/ws/ItemService"
+			 xmlns:common="http://www.wstutorial.com/ws/CommonService">
+
+	<types>
+		<xs:schema>
+			<xs:import namespace="http://www.wstutorial.com/ws/ItemService" schemaLocation="../schemas/item.xsd"/>
+		</xs:schema>
+		<xs:schema>
+			<xs:import namespace="http://www.wstutorial.com/ws/CommonService" schemaLocation="../../../../../Common/src/main/resources/schemas/common.xsd"/>
+		</xs:schema>
+	</types>
+
+	<message name="getItemsRequestMsg">
+		<part name="params" element="Item:getItemsRequest" />
+	</message>
+	<message name="getItemsResponseMsg">
+		<part name="params" element="Item:getItemsResponse" />
+	</message>
+
+	<message name="deleteItemRequestMsg">
+		<part name="params" element="Item:deleteItemRequest" />
+	</message>
+	<message name="sendAcknowledgementMsg">
+		<part name="params" element="common:AcknowledgementCodeResponse" />
+	</message>
+
+	<message name="updateItemRequestMsg">
+		<part name="params" element="Item:updateItemRequest" />
+	</message>
+
+	<message name="createItemRequestMsg">
+		<part name="params" element="Item:createItemRequest"/>
+	</message>
+
+	<message name="ItemFailureMsg">
+		<part name="params" element="common:fault" />
+	</message>
+
+	<message name="getItemRequestMsg">
+		<part name="params" element="Item:getItemRequest"/>
+	</message>
+	<message name="getItemResponseMsg">
+		<part name="params" element="Item:getItemResponse"/>
+	</message>
+
+	<portType name="ItemServicePortType">
+		<operation name="deleteItem">
+			<input message="tns:deleteItemRequestMsg" />
+			<output message="tns:sendAcknowledgementMsg" />
+			<fault name="fault" message="tns:ItemFailureMsg" />
+		</operation>
+		<operation name="createItem">
+			<input message="tns:createItemRequestMsg"/>
+			<output message="tns:sendAcknowledgementMsg"/>
+			<fault name="fault" message="tns:ItemFailureMsg"/>
+		</operation>
+		<operation name="updateItem">
+			<input message="tns:updateItemRequestMsg" />
+			<output message="tns:sendAcknowledgementMsg" />
+			<fault name="fault" message="tns:ItemFailureMsg" />
+		</operation>
+		<operation name="getItems">
+			<input message="tns:getItemsRequestMsg" />
+			<output message="tns:getItemsResponseMsg" />
+			<fault name="fault" message="tns:ItemFailureMsg" />
+		</operation>
+		<operation name="getItem">
+			<input message="tns:getItemRequestMsg"/>
+			<output message="Item:getItemResponseMsg"/>
+			<fault name="fault" message="tns:ItemFailureMsg"/>
+		</operation>
+	</portType>
+
+	<binding name="ItemServiceSOAPBinding" type="tns:ItemServicePortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="deleteItem">
+			<soap:operation soapAction="deleteItem" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="createItem">
+			<soap:operation soapAction="createItem" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="updateItem">
+			<soap:operation soapAction="updateItem" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="getItems">
+			<soap:operation soapAction="getItems" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="getItem">
+			<soap:operation soapAction="getItem" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+	</binding>
+	<service name="ItemService">
+		<port name="ItemServicePort" binding="tns:ItemServiceSOAPBinding">
+			<soap:address location="http://localhost:8083/ws/ItemService" />
+		</port>
+	</service>
+</definitions>

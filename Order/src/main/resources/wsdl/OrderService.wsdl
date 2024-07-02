@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions name="OrderService"
+			 targetNamespace="http://www.wstutorial.com/ws/OrderService"
+			 xmlns="http://schemas.xmlsoap.org/wsdl/"
+			 xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+			 xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			 xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+			 xmlns:tns="http://www.wstutorial.com/ws/OrderService"
+			 xmlns:Order="http://www.wstutorial.com/ws/OrderService"
+			 xmlns:common="http://www.wstutorial.com/ws/CommonService">
+
+	<types>
+		<xs:schema>
+			<xs:import namespace="http://www.wstutorial.com/ws/OrderService" schemaLocation="../schemas/order.xsd"/>
+		</xs:schema>
+		<xs:schema>
+			<xs:import namespace="http://www.wstutorial.com/ws/CommonService" schemaLocation="../../../../../Common/src/main/resources/schemas/common.xsd"/>
+		</xs:schema>
+	</types>
+
+	<!-- Existing Messages -->
+	<message name="getOrdersRequestMsg">
+		<part name="params" element="Order:getOrdersRequest" />
+	</message>
+	<message name="getOrdersResponseMsg">
+		<part name="params" element="Order:getOrdersResponse" />
+	</message>
+	<message name="cancelOrderRequestMsg">
+		<part name="params" element="Order:cancelOrderRequest" />
+	</message>
+	<message name="sendAcknowledgementMsg">
+		<part name="params" element="common:AcknowledgementCodeResponse" />
+	</message>
+	<message name="updateOrderRequestMsg">
+		<part name="params" element="Order:updateOrderRequest" />
+	</message>
+	<message name="createOrderRequestMsg">
+		<part name="params" element="Order:createOrderRequest"/>
+	</message>
+	<message name="OrderFailureMsg">
+		<part name="params" element="common:fault" />
+	</message>
+	<message name="getOrderRequestMsg">
+		<part name="params" element="Order:getOrderRequest"/>
+	</message>
+	<message name="getOrderResponseMsg">
+		<part name="params" element="Order:getOrderResponse"/>
+	</message>
+
+	<!-- New Messages -->
+	<message name="getOrdersByCustomerIdRequestMsg">
+		<part name="params" element="Order:getOrdersByCustomerIdRequest"/>
+	</message>
+	<message name="getOrdersByRetailerIdRequestMsg">
+		<part name="params" element="Order:getOrdersByRetailerIdRequest"/>
+	</message>
+	<message name="getOrdersByCustomerIdResponseMsg">
+		<part name="params" element="Order:getOrdersResponse"/>
+	</message>
+	<message name="getOrdersByRetailerIdResponseMsg">
+		<part name="params" element="Order:getOrdersResponse"/>
+	</message>
+
+	<portType name="OrderServicePortType">
+		<!-- Existing Operations -->
+		<operation name="cancelOrder">
+			<input message="tns:cancelOrderRequestMsg"/>
+			<output message="tns:sendAcknowledgementMsg"/>
+			<fault message="tns:OrderFailureMsg" name="fault"/>
+		</operation>
+		<operation name="createOrder">
+			<input message="tns:createOrderRequestMsg"/>
+			<output message="tns:sendAcknowledgementMsg"/>
+			<fault message="tns:OrderFailureMsg" name="fault"/>
+		</operation>
+		<operation name="updateOrder">
+			<input message="tns:updateOrderRequestMsg"/>
+			<output message="tns:sendAcknowledgementMsg"/>
+			<fault message="tns:OrderFailureMsg" name="fault"/>
+		</operation>
+		<operation name="getOrders">
+			<input message="tns:getOrdersRequestMsg"/>
+			<output message="tns:getOrdersResponseMsg"/>
+			<fault message="tns:OrderFailureMsg" name="fault"/>
+		</operation>
+		<operation name="getOrder">
+			<input message="tns:getOrderRequestMsg"/>
+			<output message="tns:getOrderResponseMsg"/>
+			<fault message="tns:OrderFailureMsg" name="fault"/>
+		</operation>
+
+		<!-- New Operations -->
+		<operation name="getOrdersByCustomerId">
+			<input message="tns:getOrdersByCustomerIdRequestMsg"/>
+			<output message="tns:getOrdersByCustomerIdResponseMsg"/>
+			<fault message="tns:OrderFailureMsg" name="fault"/>
+		</operation>
+		<operation name="getOrdersByRetailerId">
+			<input message="tns:getOrdersByRetailerIdRequestMsg"/>
+			<output message="tns:getOrdersByRetailerIdResponseMsg"/>
+			<fault message="tns:OrderFailureMsg" name="fault"/>
+		</operation>
+	</portType>
+
+	<binding name="OrderServiceSOAPBinding" type="tns:OrderServicePortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="deleteOrder">
+			<soap:operation soapAction="deleteOrder" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="createOrder">
+			<soap:operation soapAction="createOrder" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="updateOrder">
+			<soap:operation soapAction="updateOrder" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="getOrders">
+			<soap:operation soapAction="getOrders" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="getOrder">
+			<soap:operation soapAction="getOrder" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+
+		<!-- New Operations -->
+		<operation name="getOrdersByCustomerId">
+			<soap:operation soapAction="getOrdersByCustomerId" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="getOrdersByRetailerId">
+			<soap:operation soapAction="getOrdersByRetailerId" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+	</binding>
+
+	<service name="OrderService">
+		<port name="OrderServicePort" binding="tns:OrderServiceSOAPBinding">
+			<soap:address location="http://localhost:8083/ws/OrderService" />
+		</port>
+	</service>
+</definitions>

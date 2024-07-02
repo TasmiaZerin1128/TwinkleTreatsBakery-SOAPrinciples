@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.wstutorial.com/ws/ItemService"
+           xmlns:tns="http://www.wstutorial.com/ws/ItemService">
+
+    <xs:complexType name="Item">
+        <xs:all>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="itemName" type="xs:string"/>
+            <xs:element name="stock" type="xs:long"/>
+            <xs:element name="price" type="xs:long"/>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:element name="updateItemRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="itemType" type="tns:Item" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="createItemRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="itemType" type="tns:Item" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="deleteItemRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getItemRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getItemsRequest">
+        <xs:complexType>
+            <xs:sequence>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getItemResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="tns:Item" name="item"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getItemsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="tns:Item" minOccurs="0" maxOccurs="unbounded" name="items" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="items">
+        <xs:sequence>
+            <xs:element type="tns:Item" minOccurs="0" maxOccurs="unbounded" name="items" />
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>
