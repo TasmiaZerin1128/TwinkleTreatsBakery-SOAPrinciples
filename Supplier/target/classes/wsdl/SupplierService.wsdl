@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="SupplierService"
+			 targetNamespace="http://www.wstutorial.com/ws/SupplierService"
+			 xmlns="http://schemas.xmlsoap.org/wsdl/"
+			 xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+			 xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			 xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+			 xmlns:tns="http://www.wstutorial.com/ws/SupplierService"
+			 xmlns:supplier="http://www.wstutorial.com/ws/SupplierService"
+			 xmlns:common="http://www.wstutorial.com/ws/CommonService">
+
+	<types>
+		<xs:schema>
+			<xs:import namespace="http://www.wstutorial.com/ws/SupplierService" schemaLocation="../schemas/supplier.xsd"/>
+		</xs:schema>
+		<xs:schema>
+			<xs:import namespace="http://www.wstutorial.com/ws/CommonService" schemaLocation="../../../../../Common/src/main/resources/schemas/common.xsd"/>
+		</xs:schema>
+	</types>
+
+	<message name="getSuppliersRequestMsg">
+		<part name="params" element="supplier:getSuppliersRequest" />
+	</message>
+	<message name="getSuppliersResponseMsg">
+		<part name="params" element="supplier:getSuppliersResponse" />
+	</message>
+
+	<message name="deleteSupplierRequestMsg">
+		<part name="params" element="supplier:deleteSupplierRequest" />
+	</message>
+	<message name="sendAcknowledgementMsg">
+		<part name="params" element="common:AcknowledgementCodeResponse" />
+	</message>
+
+	<message name="updateSupplierRequestMsg">
+		<part name="params" element="supplier:updateSupplierRequest" />
+	</message>
+
+	<message name="createSupplierRequestMsg">
+		<part name="params" element="supplier:createSupplierRequest"/>
+	</message>
+
+	<message name="supplierFailureMsg">
+		<part name="params" element="common:fault" />
+	</message>
+
+	<message name="getSupplierRequestMsg">
+		<part name="params" element="supplier:getSupplierRequest"/>
+	</message>
+	<message name="getSupplierResponseMsg">
+		<part name="params" element="supplier:getSupplierResponse"/>
+	</message>
+
+	<portType name="SupplierServicePortType">
+		<operation name="deleteSupplier">
+			<input message="tns:deleteSupplierRequestMsg" />
+			<output message="tns:sendAcknowledgementMsg" />
+			<fault name="fault" message="tns:supplierFailureMsg" />
+		</operation>
+		<operation name="createSupplier">
+			<input message="tns:createSupplierRequestMsg"/>
+			<output message="tns:sendAcknowledgementMsg"/>
+			<fault name="fault" message="tns:supplierFailureMsg"/>
+		</operation>
+		<operation name="updateSupplier">
+			<input message="tns:updateSupplierRequestMsg" />
+			<output message="tns:sendAcknowledgementMsg" />
+			<fault name="fault" message="tns:supplierFailureMsg" />
+		</operation>
+		<operation name="getSuppliers">
+			<input message="tns:getSuppliersRequestMsg" />
+			<output message="tns:getSuppliersResponseMsg" />
+			<fault name="fault" message="tns:supplierFailureMsg" />
+		</operation>
+		<operation name="getSupplier">
+			<input message="tns:getSupplierRequestMsg"/>
+			<output message="supplier:getSupplierResponseMsg"/>
+			<fault name="fault" message="tns:supplierFailureMsg"/>
+		</operation>
+	</portType>
+
+	<binding name="supplierServiceSOAPBinding" type="tns:SupplierServicePortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="deleteSupplier">
+			<soap:operation soapAction="deleteSupplier" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="createSupplier">
+			<soap:operation soapAction="createSupplier" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="updateSupplier">
+			<soap:operation soapAction="updateSupplier" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="getSuppliers">
+			<soap:operation soapAction="getSuppliers" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="getSupplier">
+			<soap:operation soapAction="getSupplier" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+	</binding>
+	<service name="SupplierService">
+		<port name="SupplierServicePort" binding="tns:supplierServiceSOAPBinding">
+			<soap:address location="http://localhost:8083/ws/supplierService" />
+		</port>
+	</service>
+</definitions>

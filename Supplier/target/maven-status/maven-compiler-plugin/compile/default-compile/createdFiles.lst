@@ -1,0 +1,16 @@
+com\wstutorial\ws\supplierservice\GetSuppliersResponse.class
+com\wstutorial\ws\supplierservice\DeleteSupplierRequest.class
+com\wstutorial\ws\supplierservice\GetSupplierRequest.class
+com\wstutorial\ws\supplierservice\Suppliers.class
+com\wstutorial\ws\supplierservice\Supplier.class
+com\wstutorial\ws\commonservice\ObjectFactory.class
+com\wstutorial\ws\commonservice\StatusCode.class
+com\wstutorial\ws\commonservice\package-info.class
+com\wstutorial\ws\commonservice\AcknowledgementCode.class
+com\wstutorial\ws\supplierservice\GetSuppliersRequest.class
+com\wstutorial\ws\supplierservice\ObjectFactory.class
+com\wstutorial\ws\supplierservice\GetSupplierResponse.class
+com\wstutorial\ws\supplierservice\package-info.class
+com\wstutorial\ws\supplierservice\CreateSupplierRequest.class
+com\wstutorial\ws\supplierservice\UpdateSupplierRequest.class
+com\wstutorial\ws\commonservice\AcknowledgementCodeResponse.class

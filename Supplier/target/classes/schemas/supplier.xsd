@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.wstutorial.com/ws/SupplierService"
+           xmlns:tns="http://www.wstutorial.com/ws/SupplierService">
+
+    <xs:complexType name="Supplier">
+        <xs:all>
+            <xs:element name="id" type="xs:long" />
+            <xs:element name="name" type="xs:string" />
+            <xs:element name="email" type="xs:string" />
+            <xs:element name="phoneNumber" type="xs:string" />
+        </xs:all>
+    </xs:complexType>
+
+    <xs:element name="updateSupplierRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="supplierType" type="tns:Supplier" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="createSupplierRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="supplierType" type="tns:Supplier" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:element name="deleteSupplierRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getSupplierRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getSuppliersRequest">
+        <xs:complexType>
+            <xs:sequence>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getSupplierResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="tns:Supplier" name="supplier"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getSuppliersResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="tns:Supplier" minOccurs="0" maxOccurs="unbounded" name="suppliers" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="Suppliers">
+        <xs:sequence>
+            <xs:element type="tns:Supplier" minOccurs="0" maxOccurs="unbounded" name="suppliers" />
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>
