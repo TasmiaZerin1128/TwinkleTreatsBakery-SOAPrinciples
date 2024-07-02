@@ -50,6 +50,12 @@
 	<message name="getEmployeeResponseMsg">
 		<part name="params" element="employee:getEmployeeResponse"/>
 	</message>
+	<message name="assignDeliveryManRequestMsg">
+		<part name="params" element="employee:assignDeliveryManRequest" />
+	</message>
+	<message name="getPaymentRequestMsg">
+		<part name="params" element="employee:getPaymentRequest" />
+	</message>
 
 	<portType name="EmployeeServicePortType">
 		<operation name="deleteEmployee">
@@ -75,6 +81,16 @@
 		<operation name="getEmployee">
 			<input message="tns:getEmployeeRequestMsg"/>
 			<output message="employee:getEmployeeResponseMsg"/>
+			<fault name="fault" message="tns:employeeFailureMsg"/>
+		</operation>
+		<operation name="assignDeliveryMan">
+			<input message="tns:assignDeliveryManRequestMsg"/>
+			<output message="employee:sendAcknowledgementMsg"/>
+			<fault name="fault" message="tns:employeeFailureMsg"/>
+		</operation>
+		<operation name="getPayment">
+			<input message="tns:getPaymentRequestMsg"/>
+			<output message="employee:sendAcknowledgementMsg"/>
 			<fault name="fault" message="tns:employeeFailureMsg"/>
 		</operation>
 	</portType>
@@ -131,6 +147,30 @@
 		</operation>
 		<operation name="getEmployee">
 			<soap:operation soapAction="getEmployee" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="assignDeliveryMan">
+			<soap:operation soapAction="assignDeliveryMan" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="getPayment">
+			<soap:operation soapAction="getPayment" />
 			<input>
 				<soap:body use="literal" />
 			</input>

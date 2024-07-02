@@ -16,13 +16,14 @@ public class EmployeeRepository {
         emp1.setName("Tasmia Zerin");
         emp1.setEmail("bsse1128@iit.du.ac.bd");
         emp1.setPhoneNumber("01752773475");
-
+        emp1.setRole("Delivery");
 
         Employee emp2 = new Employee();
         emp2.setId(1002);
         emp2.setName("New Employee in Town");
         emp2.setEmail("employee@iit.du.ac.bd");
         emp2.setPhoneNumber("01618985426");
+        emp1.setRole("Serve");
 
         employees.add(emp1);
         employees.add(emp2);
@@ -70,6 +71,37 @@ public class EmployeeRepository {
         return AcknowledgementCode.FAILED;
     }
 
+    public AcknowledgementCode assignDeliveryMan(Long id, Employee employee) {
+        if (id == null || employee == null) {
+            System.out.println("Invalid input: ID or employee is null");
+            return AcknowledgementCode.FAILED;
+        }
+
+        for(Employee r: employees) {
+            if(r.getId() == id) {
+                r.setRole("Delivery");
+                return AcknowledgementCode.UPDATED;
+            }
+        }
+        System.out.println("Employee not found with id: " + id + ", Assigning aborted");
+        return AcknowledgementCode.FAILED;
+    }
+
+    public AcknowledgementCode getPayment(Long id, Long amount) {
+        if (id == null) {
+            System.out.println("Invalid input: ID is null");
+            return AcknowledgementCode.FAILED;
+        }
+
+        for(Employee r: employees) {
+            if(r.getId() == id) {
+                System.out.println("Salary is paid");
+                return AcknowledgementCode.UPDATED;
+            }
+        }
+        System.out.println("Employee not found with id: " + id + ", Payment aborted");
+        return AcknowledgementCode.FAILED;
+    }
 
     public void createNewEmployee(Employee employee) {
         employee.setId(employees.size()+1001);

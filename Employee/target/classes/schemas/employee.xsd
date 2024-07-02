@@ -9,6 +9,7 @@
             <xs:element name="name" type="xs:string" />
             <xs:element name="email" type="xs:string" />
             <xs:element name="phoneNumber" type="xs:string" />
+            <xs:element name="role" type="xs:string" />
         </xs:all>
     </xs:complexType>
 
@@ -64,6 +65,23 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element type="tns:Employee" minOccurs="0" maxOccurs="unbounded" name="employees" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="assignDeliveryManRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getPaymentRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long" />
+                <xs:element name="salary" type="xs:long" />
             </xs:sequence>
         </xs:complexType>
     </xs:element>

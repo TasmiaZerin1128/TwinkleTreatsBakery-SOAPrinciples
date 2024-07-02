@@ -79,7 +79,29 @@ public class EmployeeServiceEndpoint {
 		return response;
 	}
 
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "assignDeliveryMan" )
+	@ResponsePayload
+	public AcknowledgementCodeResponse assignDeliveryMan(@RequestPayload AssignDeliveryManRequest request)throws Exception  {
+		System.out.println("employee assigned as Delivery Man");
+		AcknowledgementCodeResponse response = new AcknowledgementCodeResponse();
 
+		AcknowledgementCode ack = employeeRepository.assignDeliveryMan(request.getId(), employeeRepository.getEmployeeById(request.getId()));
 
+		response.setAcknowledgementCode(ack);
 
+		return response;
+	}
+
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "getPaymentRequest" )
+	@ResponsePayload
+	public AcknowledgementCodeResponse getPayment(@RequestPayload GetPaymentRequest request)throws Exception  {
+		System.out.println("employee got payment");
+		AcknowledgementCodeResponse response = new AcknowledgementCodeResponse();
+
+		AcknowledgementCode ack = employeeRepository.getPayment(request.getId(), 25000L);
+
+		response.setAcknowledgementCode(ack);
+
+		return response;
+	}
 }
