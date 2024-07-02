@@ -9,9 +9,6 @@
             <xs:element name="name" type="xs:string" />
             <xs:element name="email" type="xs:string" />
             <xs:element name="phoneNumber" type="xs:string" />
-            <xs:element name="nidNumber" type="xs:string" />
-            <xs:element name="tinNumber" type="xs:string" />
-            <xs:element name="bank" type="xs:string" />
         </xs:all>
     </xs:complexType>
 
