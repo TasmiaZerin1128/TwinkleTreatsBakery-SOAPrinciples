@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="EmployeeService"
+			 targetNamespace="http://www.wstutorial.com/ws/EmployeeService"
+			 xmlns="http://schemas.xmlsoap.org/wsdl/"
+			 xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+			 xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			 xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+			 xmlns:tns="http://www.wstutorial.com/ws/EmployeeService"
+			 xmlns:employee="http://www.wstutorial.com/ws/EmployeeService"
+			 xmlns:common="http://www.wstutorial.com/ws/CommonService">
+
+	<types>
+		<xs:schema>
+			<xs:import namespace="http://www.wstutorial.com/ws/EmployeeService" schemaLocation="../schemas/employee.xsd"/>
+		</xs:schema>
+		<xs:schema>
+			<xs:import namespace="http://www.wstutorial.com/ws/CommonService" schemaLocation="../../../../../Common/src/main/resources/schemas/common.xsd"/>
+		</xs:schema>
+	</types>
+
+	<message name="getEmployeesRequestMsg">
+		<part name="params" element="employee:getEmployeesRequest" />
+	</message>
+	<message name="getEmployeesResponseMsg">
+		<part name="params" element="employee:getEmployeesResponse" />
+	</message>
+
+	<message name="deleteEmployeeRequestMsg">
+		<part name="params" element="employee:deleteEmployeeRequest" />
+	</message>
+	<message name="sendAcknowledgementMsg">
+		<part name="params" element="common:AcknowledgementCodeResponse" />
+	</message>
+
+	<message name="updateEmployeeRequestMsg">
+		<part name="params" element="employee:updateEmployeeRequest" />
+	</message>
+
+	<message name="createEmployeeRequestMsg">
+		<part name="params" element="employee:createEmployeeRequest"/>
+	</message>
+
+	<message name="employeeFailureMsg">
+		<part name="params" element="common:fault" />
+	</message>
+
+	<message name="getEmployeeRequestMsg">
+		<part name="params" element="employee:getEmployeeRequest"/>
+	</message>
+	<message name="getEmployeeResponseMsg">
+		<part name="params" element="employee:getEmployeeResponse"/>
+	</message>
+
+	<portType name="EmployeeServicePortType">
+		<operation name="deleteEmployee">
+			<input message="tns:deleteEmployeeRequestMsg" />
+			<output message="tns:sendAcknowledgementMsg" />
+			<fault name="fault" message="tns:employeeFailureMsg" />
+		</operation>
+		<operation name="createEmployee">
+			<input message="tns:createEmployeeRequestMsg"/>
+			<output message="tns:sendAcknowledgementMsg"/>
+			<fault name="fault" message="tns:employeeFailureMsg"/>
+		</operation>
+		<operation name="updateEmployee">
+			<input message="tns:updateEmployeeRequestMsg" />
+			<output message="tns:sendAcknowledgementMsg" />
+			<fault name="fault" message="tns:employeeFailureMsg" />
+		</operation>
+		<operation name="getEmployees">
+			<input message="tns:getEmployeesRequestMsg" />
+			<output message="tns:getEmployeesResponseMsg" />
+			<fault name="fault" message="tns:employeeFailureMsg" />
+		</operation>
+		<operation name="getEmployee">
+			<input message="tns:getEmployeeRequestMsg"/>
+			<output message="employee:getEmployeeResponseMsg"/>
+			<fault name="fault" message="tns:employeeFailureMsg"/>
+		</operation>
+	</portType>
+
+	<binding name="employeeServiceSOAPBinding" type="tns:EmployeeServicePortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="deleteEmployee">
+			<soap:operation soapAction="deleteEmployee" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="createEmployee">
+			<soap:operation soapAction="createEmployee" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="updateEmployee">
+			<soap:operation soapAction="updateEmployee" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="getEmployees">
+			<soap:operation soapAction="getEmployees" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="getEmployee">
+			<soap:operation soapAction="getEmployee" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+	</binding>
+	<service name="EmployeeService">
+		<port name="EmployeeServicePort" binding="tns:employeeServiceSOAPBinding">
+			<soap:address location="http://localhost:3001/ws/employeeService" />
+		</port>
+	</service>
+</definitions>

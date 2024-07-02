@@ -144,7 +144,7 @@
 	</binding>
 	<service name="CustomerService">
 		<port name="CustomerServicePort" binding="tns:customerServiceSOAPBinding">
-			<soap:address location="http://localhost:8083/ws/customerService" />
+			<soap:address location="http://localhost:3001/ws/customerService" />
 		</port>
 	</service>
 </definitions>

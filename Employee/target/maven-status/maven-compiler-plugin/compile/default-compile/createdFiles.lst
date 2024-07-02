@@ -1,0 +1,16 @@
+com\wstutorial\ws\employeeservice\Employee.class
+com\wstutorial\ws\commonservice\ObjectFactory.class
+com\wstutorial\ws\employeeservice\DeleteEmployeeRequest.class
+com\wstutorial\ws\commonservice\StatusCode.class
+com\wstutorial\ws\employeeservice\package-info.class
+com\wstutorial\ws\commonservice\package-info.class
+com\wstutorial\ws\employeeservice\ObjectFactory.class
+com\wstutorial\ws\commonservice\AcknowledgementCode.class
+com\wstutorial\ws\employeeservice\GetEmployeesRequest.class
+com\wstutorial\ws\employeeservice\GetEmployeesResponse.class
+com\wstutorial\ws\employeeservice\GetEmployeeResponse.class
+com\wstutorial\ws\employeeservice\Employees.class
+com\wstutorial\ws\employeeservice\GetEmployeeRequest.class
+com\wstutorial\ws\employeeservice\CreateEmployeeRequest.class
+com\wstutorial\ws\commonservice\AcknowledgementCodeResponse.class
+com\wstutorial\ws\employeeservice\UpdateEmployeeRequest.class

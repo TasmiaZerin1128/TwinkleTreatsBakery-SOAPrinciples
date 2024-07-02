@@ -144,7 +144,7 @@
 	</binding>
 	<service name="RetailerService">
 		<port name="RetailerServicePort" binding="tns:retailerServiceSOAPBinding">
-			<soap:address location="http://localhost:8083/ws/retailerService" />
+			<soap:address location="http://localhost:3001/ws/retailerService" />
 		</port>
 	</service>
 </definitions>
